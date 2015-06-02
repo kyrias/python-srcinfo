@@ -22,6 +22,8 @@ setup(
     author_email = 'johannes@kyriasis.com',
 
     install_requires=['parse'],
+    tests_require=['nose'],
+    test_suite = 'nose.collector',
 
     keywords = '.SRCINFO makepkg pacman AUR',
 
