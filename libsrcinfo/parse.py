@@ -30,14 +30,14 @@ def is_array(key):
 # options are added as package-specific options
 #
 def insert_array(key, value, target, base={}):
-    if key in target:
-        target[key].append(value)
-    else:
+    if key not in target:
         if key in base:
             target[key] = list(base[key])
         else:
             target[key] = []
 
+    # Don't append value if already in the list
+    if value not in target[key]:
         target[key].append(value)
 
 
