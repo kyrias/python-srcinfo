@@ -11,15 +11,20 @@ def read(fname):
 setup(
     name = 'libsrcinfo',
     version = '0.0.0',
+    packages=['libsrcinfo'],
+
+    description = ('A small library to parse .SRCINFO files'),
+    long_description=read('README.rst'),
+    url = 'https://github.com/kyrias/libsrcinfo',
+    license = 'ISC',
+
     author = 'Johannes Löthberg',
     author_email = 'johannes@kyriasis.com',
-    description = ('A small library to parse .SRCINFO files'),
-    license = 'ISC',
-    keywords = '.SRCINFO makepkg pacman AUR',
-    url = 'https://github.com/kyrias/libsrcinfo',
-    packages=['libsrcinfo'],
+
     install_requires=['parse'],
-    long_description=read('README.rst'),
+
+    keywords = '.SRCINFO makepkg pacman AUR',
+
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
         'Topic :: System :: Archiving :: Packaging',
