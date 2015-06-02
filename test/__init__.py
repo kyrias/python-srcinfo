@@ -1,3 +1,7 @@
+def package_names_equal(srcinfo, package_names):
+    return set(srcinfo['packages'].keys()) == set(package_names)
+
+
 def test_simple_parse():
     from libsrcinfo.parse import parse_srcinfo
 
@@ -16,7 +20,8 @@ pkgname = ponies'''
 
     parsed = parse_srcinfo(srcinfo)
     assert parsed
-    assert set(parsed['packages'].keys()) == set(['ponies'])
+    assert package_names_equal(parsed, ['ponies'])
+
 
 
 def test_split_package_names():
@@ -40,4 +45,4 @@ pkgname = rainbowdash
 pkgname = pinkiepie'''
 
     parsed = parse_srcinfo(srcinfo)
-    assert set(parsed['packages'].keys()) == set(['applejack', 'rainbowdash', 'pinkiepie'])
+    assert package_names_equal(parsed, ['applejack', 'rainbowdash', 'pinkiepie'])
