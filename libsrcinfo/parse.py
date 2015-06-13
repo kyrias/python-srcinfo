@@ -52,6 +52,8 @@ def extract_vars(string, base={}):
         parsed = parse('{} = {}', line.lstrip())
         if parsed:
             key, value = parsed
+        elif line.lstrip().startswith('#'):
+            continue
         else:
             errors.append('failed to parse line: \'{}\''.format(line.lstrip()))
             continue
