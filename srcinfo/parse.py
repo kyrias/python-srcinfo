@@ -24,9 +24,9 @@ def is_array(key):
 
 
 ##
-# Insert `value` into the array index `key` in list `target`
+# Insert `value` into the list index `key` in list `target`
 #
-def insert_array(key, value, target):
+def list_insert(target, key, value):
     if key not in target:
             target[key] = []
 
@@ -84,7 +84,7 @@ def parse_srcinfo(source):
             continue
 
         if is_array(key):
-            insert_array(key, value, info)
+            list_insert(info, key, value)
         else:
             info[key] = value
 
