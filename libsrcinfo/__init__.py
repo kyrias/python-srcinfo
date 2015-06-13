@@ -22,6 +22,22 @@ def get_variable(variable, package, info):
         return None
 
 
+##
+# Return the info for a single package
+#
+def get_merged_package(package, srcinfo):
+    if not package in srcinfo['packages']:
+        return None
+
+    merged = srcinfo.copy()
+    package_info = merged['packages'][package]
+    for key in package_info:
+        merged[key] = package_info[key]
+
+    merged.pop('packages')
+
+    return merged
+
 
 ##
 # Get a list of package names
