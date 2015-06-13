@@ -10,7 +10,7 @@ def read(fname):
 
 setup(
     name = 'srcinfo',
-    version = '0.0.0',
+    version = '0.0.1',
     packages = ['srcinfo'],
 
     description = ('A small library to parse .SRCINFO files'),
@@ -34,7 +34,7 @@ setup(
     keywords = '.SRCINFO makepkg pacman AUR',
 
     classifiers = [
-        "Development Status :: 2 - Pre-Alpha",
+        "Development Status :: 3 - Alpha",
         'Topic :: System :: Archiving :: Packaging',
         'License :: OSI Approved :: ISC License (ISCL)',
     ],
