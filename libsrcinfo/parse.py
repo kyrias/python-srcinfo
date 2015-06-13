@@ -53,7 +53,7 @@ def extract_vars(string, base={}):
         if parsed:
             key, value = parsed
         else:
-            errors.append('error: failed to parse line: \'{}\''.format(line.lstrip()))
+            errors.append('failed to parse line: \'{}\''.format(line.lstrip()))
             continue
 
         if is_array(key):
