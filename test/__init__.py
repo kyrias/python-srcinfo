@@ -52,7 +52,7 @@ pkgname = pinkiepie'''
 
 
 def test_coverage():
-    from srcinfo import get_variable
+    from srcinfo.utils import get_variable
     from srcinfo.parse import parse_srcinfo
 
     srcinfo = '''pkgbase = gcc
