@@ -37,49 +37,55 @@ def insert_array(key, value, target):
 
 
 ##
-# Extract all SRCINFO variables from `string`, using `base` to look up default
-# values.
+# Extract a SRCINFO variable from `string`
 #
-def extract_vars(string, base={}):
-    info = {}
+def extract_var(string):
+    line = string.lstrip()
+    key = None
+    value = None
     errors = []
-    for line in string.splitlines():
-        parsed = parse('{} ={}', line.lstrip())
-        if parsed:
-            key, value = parsed
-        elif line.lstrip().startswith('#'):
-            continue
-        else:
-            errors.append('failed to parse line: \'{}\''.format(line.lstrip()))
+
+    parsed = parse('{} ={}', line)
+    if parsed:
+        (key, value) = parsed
+        key = key.strip()
+        value = value.strip()
+
+    elif line.startswith('#'):
+        pass
+
+    else:
+        errors.append('failed to parse line: "{}"'.format(line))
+
+    return (key, value, errors)
+
+
+##
+# Parse SRCINFO from string
+#
+# Returns a tuple of the srcinfo dict and an list of any errors found while
+# parsing
+#
+def parse_srcinfo(source):
+    lines = source.splitlines()
+
+    srcinfo = { 'packages': {} }
+    info = srcinfo
+    errors = []
+    for line in remove_empty_values(lines):
+        if line.startswith('pkgname'):
+            pkgname = line.split('pkgname =')[1].strip()
+            info = srcinfo['packages'][pkgname] = {}
+
+        (key, value, err) = extract_var(line)
+        errors.append(err)
+
+        if not key:
             continue
 
-        value = value.strip()
         if is_array(key):
             insert_array(key, value, info)
         else:
             info[key] = value
 
-    return (info, errors)
-
-##
-# Parse SRCINFO from string
-#
-# Returns a tuple of the srcinfo dict and an array of any errors found while
-# parsing
-#
-def parse_srcinfo(source):
-    sections = remove_empty_values(source.split('\n\n'))
-    errors = []
-
-    info, err = extract_vars(sections[0])
-    errors += err
-
-    if len(sections) >= 2:
-        packages = info['packages'] = {}
-        pkgs = sections[1:]
-        for pkg in pkgs:
-            package, err = extract_vars(pkg, info)
-            errors += err
-            packages[package['pkgname'][0]] = package
-
-    return (info, errors)
+    return (srcinfo, err)
