@@ -21,6 +21,15 @@ def get_variable(variable, package, info):
     else:
         return None
 
+
+
+##
+# Get a list of package names
+#
+def get_packages(info):
+    return [p for p in info['packages'].keys()]
+
+
 ##
 # If executed, parse SRCINFO from stdin and print parsed info
 #
