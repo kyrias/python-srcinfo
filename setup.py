@@ -11,18 +11,18 @@ def read(fname):
 setup(
     name = 'libsrcinfo',
     version = '0.0.0',
-    packages=['libsrcinfo'],
+    packages = ['libsrcinfo'],
 
     description = ('A small library to parse .SRCINFO files'),
-    long_description=read('README.rst'),
+    long_description = read('README.rst'),
     url = 'https://github.com/kyrias/libsrcinfo',
     license = 'ISC',
 
     author = 'Johannes Löthberg',
     author_email = 'johannes@kyriasis.com',
 
-    install_requires=['parse'],
-    tests_require=['nose'],
+    install_requires = ['parse'],
+    tests_require = ['nose'],
     test_suite = 'nose.collector',
 
     entry_points = {
@@ -33,7 +33,7 @@ setup(
 
     keywords = '.SRCINFO makepkg pacman AUR',
 
-    classifiers=[
+    classifiers = [
         "Development Status :: 2 - Pre-Alpha",
         'Topic :: System :: Archiving :: Packaging',
         'License :: OSI Approved :: ISC License (ISCL)',
