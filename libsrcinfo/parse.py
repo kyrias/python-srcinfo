@@ -47,11 +47,13 @@ def insert_array(key, value, target, base={}):
 #
 def extract_vars(string, base={}):
     info = {}
+    errors = []
     for line in string.splitlines():
         parsed = parse('{} = {}', line.lstrip())
         if parsed:
             key, value = parsed
         else:
+            errors.append('error: failed to parse line: \'{}\''.format(line.lstrip()))
             continue
 
         if is_array(key):
@@ -59,19 +61,27 @@ def extract_vars(string, base={}):
         else:
             info[key] = value
 
-    return info
+    return (info, errors)
 
 ##
 # Parse SRCINFO from string
+#
+# Returns a tuple of the srcinfo dict and an array of any errors found while
+# parsing
+#
 def parse_srcinfo(source):
-    sections = remove_empty_valuess( source.split('\n\n') )
+    sections = remove_empty_valuess(source.split('\n\n'))
+    errors = []
 
-    info = extract_vars(sections[0])
+    info, err = extract_vars(sections[0])
+    errors += err
 
     if len(sections) >= 2:
         packages = info['packages'] = {}
         pkgs = sections[1:]
         for pkg in pkgs:
-            package = extract_vars(pkg, info)
+            package, err = extract_vars(pkg, info)
+            errors += err
             packages[package['pkgname'][0]] = package
-    return info
+
+    return (info, errors)

@@ -18,8 +18,9 @@ def test_simple_parse():
 
 pkgname = ponies'''
 
-    parsed = parse_srcinfo(srcinfo)
+    (parsed, errors) = parse_srcinfo(srcinfo)
     assert parsed
+    assert errors == []
     assert package_names_equal(parsed, ['ponies'])
 
 
@@ -44,7 +45,8 @@ pkgname = rainbowdash
 
 pkgname = pinkiepie'''
 
-    parsed = parse_srcinfo(srcinfo)
+    (parsed, errors) = parse_srcinfo(srcinfo)
+    assert errors == []
     assert package_names_equal(parsed, ['applejack', 'rainbowdash', 'pinkiepie'])
 
 
@@ -124,7 +126,8 @@ pkgname = gcc-go
 
     expected_packages = ['gcc', 'gcc-libs', 'gcc-fortran', 'gcc-objc', 'gcc-ada', 'gcc-go']
 
-    parsed = parse_srcinfo(srcinfo)
+    (parsed, errors) = parse_srcinfo(srcinfo)
+    assert errors == []
     assert package_names_equal(parsed, expected_packages)
 
     for pkgname in expected_packages:
