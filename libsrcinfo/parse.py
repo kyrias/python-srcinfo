@@ -7,7 +7,7 @@ arrays = [ 'pkgname', 'arch', 'license', 'groups', 'options',
            'depends', 'makedepends', 'checkdepends','optdepends', ]
 
 
-def remove_empty_valuess(values):
+def remove_empty_values(values):
     return [v for v in values if v.strip()]
 
 
@@ -72,7 +72,7 @@ def extract_vars(string, base={}):
 # parsing
 #
 def parse_srcinfo(source):
-    sections = remove_empty_valuess(source.split('\n\n'))
+    sections = remove_empty_values(source.split('\n\n'))
     errors = []
 
     info, err = extract_vars(sections[0])
