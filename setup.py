@@ -9,13 +9,13 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(
-    name = 'libsrcinfo',
+    name = 'srcinfo',
     version = '0.0.0',
-    packages = ['libsrcinfo'],
+    packages = ['srcinfo'],
 
     description = ('A small library to parse .SRCINFO files'),
     long_description = read('README.rst'),
-    url = 'https://github.com/kyrias/libsrcinfo',
+    url = 'https://github.com/kyrias/python-srcinfo',
     license = 'ISC',
 
     author = 'Johannes Löthberg',
@@ -27,7 +27,7 @@ setup(
 
     entry_points = {
         'console_scripts': [
-            'parse_srcinfo = libsrcinfo.main:main',
+            'parse_srcinfo = srcinfo.main:main',
         ]
     },
 

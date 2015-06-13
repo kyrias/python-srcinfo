@@ -3,7 +3,7 @@ def package_names_equal(srcinfo, package_names):
 
 
 def test_simple_parse():
-    from libsrcinfo.parse import parse_srcinfo
+    from srcinfo.parse import parse_srcinfo
 
     srcinfo = '''pkgbase = ponies
     pkgdesc = Some description
@@ -26,7 +26,7 @@ pkgname = ponies'''
 
 
 def test_split_package_names():
-    from libsrcinfo.parse import parse_srcinfo
+    from srcinfo.parse import parse_srcinfo
 
     srcinfo = '''pkgbase = pony
     pkgdesc = Some description
@@ -52,8 +52,8 @@ pkgname = pinkiepie'''
 
 
 def test_coverage():
-    from libsrcinfo import get_variable
-    from libsrcinfo.parse import parse_srcinfo
+    from srcinfo import get_variable
+    from srcinfo.parse import parse_srcinfo
 
     srcinfo = '''pkgbase = gcc
     pkgdesc = The GNU Compiler Collection

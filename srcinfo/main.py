@@ -1,4 +1,4 @@
-from libsrcinfo.parse import parse_srcinfo
+from srcinfo.parse import parse_srcinfo
 import sys
 
 ##
