@@ -26,14 +26,8 @@ def is_array(key):
 ##
 # Insert `value` into the array index `key` in list `target`
 #
-# If base is specified, it is used to look up the default value, so global
-# options are added as package-specific options
-#
-def insert_array(key, value, target, base={}):
+def insert_array(key, value, target):
     if key not in target:
-        if key in base:
-            target[key] = list(base[key])
-        else:
             target[key] = []
 
     # Don't append value if already in the list
@@ -59,7 +53,7 @@ def extract_vars(string, base={}):
             continue
 
         if is_array(key):
-            insert_array(key, value, info, base)
+            insert_array(key, value, info)
         else:
             info[key] = value
 
