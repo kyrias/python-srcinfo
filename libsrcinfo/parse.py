@@ -32,7 +32,8 @@ def insert_array(key, value, target):
 
     # Don't append value if already in the list
     if value not in target[key]:
-        target[key].append(value)
+        if value:
+            target[key].append(value)
 
 
 ##
