@@ -44,7 +44,7 @@ def extract_vars(string, base={}):
     info = {}
     errors = []
     for line in string.splitlines():
-        parsed = parse('{} = {}', line.lstrip())
+        parsed = parse('{} ={}', line.lstrip())
         if parsed:
             key, value = parsed
         elif line.lstrip().startswith('#'):
@@ -53,6 +53,7 @@ def extract_vars(string, base={}):
             errors.append('failed to parse line: \'{}\''.format(line.lstrip()))
             continue
 
+        value = value.strip()
         if is_array(key):
             insert_array(key, value, info)
         else:
