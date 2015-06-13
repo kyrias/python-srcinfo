@@ -7,13 +7,17 @@ from .parse import parse_srcinfo
 # Arguments:
 #   variable:   Variable to find
 #   package:    Package to look up variable for
-#   info:       Global list to fall back to
+#   info:       Dict to look up in
 #
 def get_variable(variable, package, info):
-    if variable in info['packages'][package]:
-        return info['packages'][package][variable]
-    elif variable in info:
+    if package and package in info['packages']:
+        package = info['packages'][package]
+        if variable in package:
+            return package[variable]
+
+    if variable in info:
         return info[variable]
+
     else:
         return None
 
