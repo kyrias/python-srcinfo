@@ -1,5 +1,3 @@
-from .parse import parse_srcinfo
-
 ##
 # Get a specific variable for a package, falling back to the global one if no
 # package-specific version exists
@@ -44,15 +42,3 @@ def get_merged_package(package, srcinfo):
 #
 def get_packages(info):
     return [p for p in info['packages'].keys()]
-
-
-##
-# If executed, parse SRCINFO from stdin and print parsed info
-#
-if __name__ == '__main__':
-    import pprint
-    import sys
-
-    srcinfo = sys.stdin.read()
-    info = parse_srcinfo(srcinfo)
-    pprint.PrettyPrinter().pprint(info)

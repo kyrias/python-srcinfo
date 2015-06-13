@@ -25,6 +25,12 @@ setup(
     tests_require=['nose'],
     test_suite = 'nose.collector',
 
+    entry_points = {
+        'console_scripts': [
+            'parse_srcinfo = libsrcinfo.main:main',
+        ]
+    },
+
     keywords = '.SRCINFO makepkg pacman AUR',
 
     classifiers=[
