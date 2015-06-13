@@ -154,13 +154,12 @@ pkgname = gcc-go
     assert get_variable('pkgdesc', 'gcc', parsed) == 'The GNU Compiler Collection - C and C++ frontends'
     assert get_variable('depends', 'gcc', parsed) == ['gcc-libs=4.9.1-2', 'binutils>=2.24', 'libmpc', 'cloog']
     assert get_variable('groups', 'gcc', parsed) == ['base-devel']
-
-    assert get_variable('options', 'gcc', parsed) == ['!emptydirs', 'staticlibs']
+    assert get_variable('options', 'gcc', parsed) == ['staticlibs']
     assert get_variable('install', 'gcc', parsed) == 'gcc.install'
 
     assert get_variable('pkgdesc', 'gcc-fortran', parsed) == 'Fortran front-end for GCC'
     assert get_variable('depends', 'gcc-fortran', parsed) == ['gcc=4.9.1-2']
-    assert get_variable('options', 'gcc-fortran', parsed) == ['!emptydirs', 'staticlibs']
+    assert get_variable('options', 'gcc-fortran', parsed) == ['staticlibs', '!emptydirs']
     assert get_variable('install', 'gcc-fortran', parsed) == 'gcc-fortran.install'
     assert not get_variable('groups', 'gcc-fortran', parsed)
 
@@ -172,12 +171,12 @@ pkgname = gcc-go
 
     assert get_variable('pkgdesc', 'gcc-ada', parsed) == 'Ada front-end for GCC (GNAT)'
     assert get_variable('depends', 'gcc-ada', parsed) == ['gcc=4.9.1-2']
-    assert get_variable('options', 'gcc-ada', parsed) == ['!emptydirs', 'staticlibs']
+    assert get_variable('options', 'gcc-ada', parsed) == ['staticlibs', '!emptydirs']
     assert get_variable('install', 'gcc-ada', parsed) == 'gcc-ada.install'
     assert not get_variable('groups', 'gcc-ada', parsed)
 
     assert get_variable('pkgdesc', 'gcc-go', parsed) == 'Go front-end for GCC'
     assert get_variable('depends', 'gcc-go', parsed) == ['gcc=4.9.1-2']
-    assert get_variable('options', 'gcc-go', parsed) == ['!emptydirs', 'staticlibs']
+    assert get_variable('options', 'gcc-go', parsed) == ['staticlibs', '!emptydirs']
     assert get_variable('install', 'gcc-go', parsed) == 'gcc-go.install'
     assert not get_variable('groups', 'gcc-go', parsed)
