@@ -40,5 +40,5 @@ def get_merged_package(package, srcinfo):
 ##
 # Get a list of package names
 #
-def get_packages(info):
+def get_package_names(info):
     return [p for p in info['packages'].keys()]
