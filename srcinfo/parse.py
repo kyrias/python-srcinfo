@@ -1,4 +1,4 @@
-from parse import parse, findall
+from parse import parse
 
 arrays = [ 'pkgname', 'arch', 'license', 'groups', 'options',
            'conflicts', 'provides', 'replaces',
