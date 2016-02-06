@@ -89,4 +89,4 @@ def parse_srcinfo(source):
         else:
             info[key] = value
 
-    return (srcinfo, err)
+    return (srcinfo, errors)
