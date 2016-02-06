@@ -1,11 +1,11 @@
 from parse import parse
 
-arrays = [ 'pkgname', 'arch', 'license', 'groups', 'options',
-           'conflicts', 'provides', 'replaces',
-           'source', 'noextract', 'backup', 'validpgpkeys', 'md5sums',
-           'sha1sums', 'sha224sums', 'sha256sums', 'sha384sums', 'sha512sums',
-           'depends', 'makedepends', 'checkdepends','optdepends',
-         ]
+arrays = ['pkgname', 'arch', 'license', 'groups', 'options',
+          'conflicts', 'provides', 'replaces',
+          'source', 'noextract', 'backup', 'validpgpkeys', 'md5sums',
+          'sha1sums', 'sha224sums', 'sha256sums', 'sha384sums', 'sha512sums',
+          'depends', 'makedepends', 'checkdepends', 'optdepends',
+          ]
 
 
 def remove_empty_values(values):
@@ -70,7 +70,7 @@ def extract_var(string):
 def parse_srcinfo(source):
     lines = source.splitlines()
 
-    srcinfo = { 'packages': {} }
+    srcinfo = {'packages': {}}
     info = srcinfo
     errors = []
     for line in remove_empty_values(lines):
