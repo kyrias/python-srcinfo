@@ -73,13 +73,21 @@ def parse_srcinfo(source):
     srcinfo = {'packages': {}}
     info = srcinfo
     errors = []
-    for line in remove_empty_values(lines):
+    for index, line in enumerate(lines, start=1):
+        if not line.strip():
+            continue
+
         if line.startswith('pkgname'):
             pkgname = line.split('pkgname =')[1].strip()
             info = srcinfo['packages'][pkgname] = {}
+            continue
 
         (key, value, err) = extract_var(line)
-        errors.append(err)
+        if err:
+            errors.append({
+                'line': index,
+                'error': err
+            })
 
         if not key:
             continue
