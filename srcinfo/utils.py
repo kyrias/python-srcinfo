@@ -33,6 +33,7 @@ def get_merged_package(package, srcinfo):
         merged[key] = package_info[key]
 
     merged.pop('packages')
+    merged['pkgname'] = package
 
     return merged
 
