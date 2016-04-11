@@ -1,12 +1,11 @@
 from srcinfo.parse import parse_srcinfo
 import sys
 
+
 ##
 # Parse SRCINFO from stdin and pretty-print parsed info
 #
 def main():
-    import sys
-
     output_json = len(sys.argv) > 1 and sys.argv[1] == "--json"
 
     srcinfo = sys.stdin.read()
