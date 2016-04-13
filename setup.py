@@ -10,7 +10,7 @@ def read(fname):
 
 setup(
     name = 'srcinfo',
-    version = '0.0.6',
+    version = '0.0.8',
     packages = ['srcinfo'],
 
     description = ('A small library to parse .SRCINFO files'),
