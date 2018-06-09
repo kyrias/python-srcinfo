@@ -92,6 +92,12 @@ def parse_srcinfo(source):
         if not key:
             continue
 
+        if key == "pkgbase" and (key in srcinfo or info != srcinfo):
+            errors.append({
+                'line': index,
+                'error': "pkgbase declared more than once or after pkgname"
+            })
+
         if is_array(key):
             list_insert(info, key, value)
         else:
