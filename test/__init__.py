@@ -51,6 +51,30 @@ pkgname = pinkiepie'''
 
 
 
+def test_multiple_pkgbase():
+    from srcinfo.parse import parse_srcinfo
+
+    srcinfo = '''pkgbase = pony
+    pkgdesc = Some description
+    pkgver = 1.0.0
+    pkgrel = 1
+    url = https://example.com
+    arch = i686
+    arch = x86_64
+    license = ISC
+    source = git+https://example.com/package.git
+    md5sums = SKIP
+
+pkgname = luna
+
+pkgbase = ponies'''
+
+    (parsed, errors) = parse_srcinfo(srcinfo)
+    assert package_names_equal(parsed, ['luna'])
+    assert len(errors) == 1
+
+
+
 def test_coverage():
     from srcinfo.utils import get_variable
     from srcinfo.parse import parse_srcinfo
