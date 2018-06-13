@@ -180,3 +180,21 @@ pkgname = gcc-go
     assert get_variable('options', 'gcc-go', parsed) == ['staticlibs', '!emptydirs']
     assert get_variable('install', 'gcc-go', parsed) == 'gcc-go.install'
     assert not get_variable('groups', 'gcc-go', parsed)
+
+def test_empty_attr_in_package_overrides_global():
+    from srcinfo.parse import parse_srcinfo
+    from srcinfo.utils import get_variable
+
+    srcinfo = '''pkgbase = pony
+    depends = global
+
+pkgname = applejack
+
+pkgname = pinkiepie
+    depends =
+'''
+
+    (parsed, errors) = parse_srcinfo(srcinfo)
+    assert errors == [], errors
+    assert get_variable('depends', 'pinkiepie', parsed) == [], get_variable('depends', 'pinkiepie', parsed)
+    assert get_variable('depends', 'applejack', parsed) == ['global']

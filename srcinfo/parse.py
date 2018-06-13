@@ -46,11 +46,13 @@ def extract_var(string):
     value = None
     errors = []
 
-    parsed = parse('{} ={}', line)
+    def value(string):
+        return string.strip()
+    value.pattern = r'.*'
+
+    parsed = parse('{:^}={:value}', line, dict(value=value))
     if parsed:
         (key, value) = parsed
-        key = key.strip()
-        value = value.strip()
 
     elif line.startswith('#'):
         pass
