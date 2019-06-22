@@ -70,12 +70,8 @@ def parse_srcinfo(source):
         if not line.strip():
             continue
 
-        if line.startswith('pkgname'):
-            pkgname = line.split('pkgname =')[1].strip()
-            info = srcinfo['packages'][pkgname] = {}
-            continue
-
         (key, value, err) = extract_var(line)
+
         if err:
             errors.append({
                 'line': index,
@@ -83,6 +79,11 @@ def parse_srcinfo(source):
             })
 
         if not key:
+            continue
+
+        if key == 'pkgname':
+            pkgname = value
+            info = srcinfo['packages'][pkgname] = {}
             continue
 
         if key == "pkgbase" and (key in srcinfo or info != srcinfo):
