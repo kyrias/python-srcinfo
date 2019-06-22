@@ -22,7 +22,7 @@ def is_array(key):
 #
 def list_insert(target, key, value):
     if key not in target:
-            target[key] = []
+        target[key] = []
 
     # Don't append value if already in the list
     if value not in target[key]:
