@@ -50,7 +50,7 @@ def extract_var(string):
     if parsed:
         (key, value) = parsed
     else:
-        errors.append('failed to parse line: "{}"'.format(line))
+        errors.append('failed to parse line: {!r}'.format(line))
 
     return (key, value, errors)
 
