@@ -8,10 +8,6 @@ arrays = ['pkgname', 'arch', 'license', 'groups', 'options',
           ]
 
 
-def remove_empty_values(values):
-    return [v for v in values if v.strip()]
-
-
 ##
 # Check if SRCINFO key is an array
 #
