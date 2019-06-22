@@ -78,19 +78,26 @@ def parse_srcinfo(source):
                 'error': err
             })
 
-        if not key:
-            continue
+        if key == 'pkgbase':
+            if 'pkgbase' in srcinfo:
+                errors.append({
+                    'line': index,
+                    'error': "pkgbase declared more than once",
+                })
+
+            elif info != srcinfo:
+                errors.append({
+                    'line': index,
+                    'error': "pkgbase declared after pkgname",
+                })
 
         if key == 'pkgname':
             pkgname = value
             info = srcinfo['packages'][pkgname] = {}
             continue
 
-        if key == "pkgbase" and (key in srcinfo or info != srcinfo):
-            errors.append({
-                'line': index,
-                'error': "pkgbase declared more than once or after pkgname"
-            })
+        elif not key:
+            continue
 
         if is_array(key):
             list_insert(info, key, value)

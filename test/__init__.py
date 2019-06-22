@@ -77,6 +77,18 @@ pkgbase = ponies'''
         self.assertIn('pkgbase declared more than once', errors[0]['error'])
 
 
+    def testRejectsPkgbaseAfterPkgname(self):
+        from srcinfo.parse import parse_srcinfo
+
+        srcinfo = '''pkgname = luna
+pkgbase = pony'''
+
+        (parsed, errors) = parse_srcinfo(srcinfo)
+        self.assertPackageNamesEqual(parsed, ['luna'])
+        self.assertEqual(len(errors), 1)
+        self.assertIn('pkgbase declared after pkgname', errors[0]['error'])
+
+
     def testCoverage(self):
         from srcinfo.parse import parse_srcinfo
         from srcinfo.utils import get_variable
