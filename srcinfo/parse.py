@@ -35,6 +35,9 @@ def list_insert(target, key, value):
 #
 def extract_var(string):
     line = string.lstrip()
+    if line.startswith('#'):
+        return (None, None, None)
+
     key = None
     value = None
     errors = []
@@ -46,10 +49,6 @@ def extract_var(string):
     parsed = parse('{:^}={:value}', line, dict(value=value))
     if parsed:
         (key, value) = parsed
-
-    elif line.startswith('#'):
-        pass
-
     else:
         errors.append('failed to parse line: "{}"'.format(line))
 
