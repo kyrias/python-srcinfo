@@ -1,6 +1,14 @@
-import unittest
+try:
+    import unittest2 as unittest
+except ImportError:
+    import unittest
+
 
 class TestSrcinfo(unittest.TestCase):
+
+    if not hasattr(unittest.TestCase, 'assertCountEqual'):
+        def assertCountEqual(self, actual, expected, msg=None):
+            return self.assertItemsEqual(actual, expected, msg)
 
     def assertPackageNamesEqual(self, srcinfo, package_names):
         self.assertCountEqual(srcinfo['packages'].keys(), package_names)

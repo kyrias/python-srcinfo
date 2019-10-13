@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 from setuptools import setup
 
@@ -36,4 +37,6 @@ setup(
         'Topic :: System :: Archiving :: Packaging',
         'License :: OSI Approved :: ISC License (ISCL)',
     ],
+
+    test_suite="test",
 )
