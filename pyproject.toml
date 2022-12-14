@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "srcinfo"
+version = "0.0.8"
+description = "A small library to parse .SRCINFO files"
+authors = ["Johannes Löthberg <johannes@kyriasis.com>"]
+license = "ISC"
+readme = "README.rst"
+
+include = ["test"]
+
+classifiers = [
+    "Topic :: System :: Archiving :: Packaging",
+    "Development Status :: 5 - Production/Stable",
+    "License :: OSI Approved :: ISC License (ISCL)",
+]
+
+[tool.poetry.scripts]
+parse_srcinfo = { callable = "srcinfo.main:main" }
+
+[tool.poetry.dependencies]
+python = "^3.7"
+parse = "^1.19.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
