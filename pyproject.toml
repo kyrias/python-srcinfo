@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "srcinfo"
-version = "0.0.8"
+version = "0.1.0"
 description = "A small library to parse .SRCINFO files"
 authors = ["Johannes Löthberg <johannes@kyriasis.com>"]
 license = "ISC"
