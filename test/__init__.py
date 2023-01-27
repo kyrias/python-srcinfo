@@ -89,6 +89,25 @@ pkgbase = pony'''
         self.assertIn('pkgbase declared after pkgname', errors[0]['error'])
 
 
+    def testArchitectureSpecificArrays(self):
+        from srcinfo.parse import parse_srcinfo
+
+        srcinfo = '''pkgbase = ponies
+    source = git+https://example.com/package.git
+    source_x86_64 = git+https://example.org/package.git
+    source_x86_64 = git+https://example.net/package.git
+pkgname = ponies'''
+
+        (parsed, errors) = parse_srcinfo(srcinfo)
+        self.assertTrue(parsed)
+        self.assertEqual(errors, [])
+        self.assertEqual(parsed['source'], ['git+https://example.com/package.git'])
+        self.assertEqual(
+            parsed['source_x86_64'],
+            ['git+https://example.org/package.git', 'git+https://example.net/package.git'],
+        )
+
+
     def testCoverage(self):
         from srcinfo.parse import parse_srcinfo
         from srcinfo.utils import get_variable
