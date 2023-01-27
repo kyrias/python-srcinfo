@@ -14,6 +14,9 @@ arrays = ['pkgname', 'arch', 'license', 'groups', 'options',
 def is_array(key):
     if key in arrays:
         return True
+    for array in arrays:
+        if key.startswith(array):
+            return True
     return False
 
 
